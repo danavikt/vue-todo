@@ -1,28 +1,45 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <AppHeader :date="headerDate">My Day!</AppHeader>
+    <div class="todo-list">
+      <ul class="todo-list__list"></ul>
+      {{newTodo}}
+      <TodoInput v-model="newTodo"/>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import AppHeader from "@/components/AppHeader";
+import TodoInput from "@/components/TodoInput";
 export default {
-  name: 'app',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    AppHeader,
+    TodoInput
+  },
+  data: () => ({
+    newTodo: null,
+    headerDate: new Date("2018,10,5")
+  })
+};
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.todo-list {
+  padding: 30px 15px;
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    width: 100%;
+    border: 1px solid rgba(black, 0.51);
+    border-radius: 10px;
+    padding: 15px;
+  }
 }
 </style>
